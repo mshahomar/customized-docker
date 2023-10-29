@@ -1,0 +1,3 @@
+sonarqube_extensions/*
+sonarqube_data/*
+logs/
