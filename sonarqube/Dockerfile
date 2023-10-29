@@ -76,5 +76,3 @@ USER sonarqube
 STOPSIGNAL SIGINT
 
 ENTRYPOINT ["/opt/sonarqube/docker/entrypoint.sh"]
-
-#WORKDIR /
