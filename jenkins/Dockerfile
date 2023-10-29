@@ -2,8 +2,7 @@
 ### Version history:
 ### 2023-09-29 - Initial build.
 
-
-From amazonlinux:2023-20230922
+FROM public.ecr.aws/amazonlinux/amazonlinux:2023.0.20230322.0
 RUN dnf upgrade -y --releasever=latest && dnf -y update
 
 RUN dnf install -y \

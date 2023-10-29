@@ -13,9 +13,29 @@ services:
       - '80:9000'
     #  - '443:443'
     #  - '22:22'
-    #volumes:
-    #  - '$GITLAB_HOME/config:/etc/gitlab'
+    volumes:
+      - './conf/sonar.properties:/opt/sonarqube/conf/sonar.properties'
+      - './logs:/opt/sonarqube/logs'
     #  - '$GITLAB_HOME/logs:/var/log/gitlab'
     #  - '$GITLAB_HOME/data:/var/opt/gitlab'
     #shm_size: '256m'
+    networks:
+      - network
+  sonardb:
+    image: postgres:15-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=78WGxJOFPFeEqqkE
+      - POSTGRES_USER=sonarqubeadmin
+      - POSTGRES_DB=sonarqubedb
+    networks:
+      - network
+
+networks:
+  network:
+    driver: bridge
+    name: sonarqube_network
 
