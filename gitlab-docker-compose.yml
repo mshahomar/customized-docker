@@ -2,8 +2,11 @@
 
 version: '3.6'
 services:
-  web:
-    image: 'gitlab/gitlab-ee:latest'
+  gitlab:
+    build:
+      context: gitlab
+      dockerfile: Gitlab-CE/Dockerfile
+    #image: 'gitlab/gitlab-ee:latest'
     restart: always
     hostname: 'gitlab.example.com'
     environment:
@@ -19,4 +22,15 @@ services:
       - '$GITLAB_HOME/logs:/var/log/gitlab'
       - '$GITLAB_HOME/data:/var/opt/gitlab'
     shm_size: '256m'
+
+  db:
+    image: postgres:15-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=78WGxJOFPFeEqqkE
+      - POSTGRES_USER=postadmin
+      - POSTGRES_DB=gitlabdb
 
