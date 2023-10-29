@@ -1,4 +1,4 @@
-#FROM public.ecr.aws/amazonlinux/amazonlinux:2023
+# Using AL2023, with Amazon-Corretto for Java version 17
 FROM public.ecr.aws/amazonlinux/amazonlinux:2023.0.20230322.0
 LABEL org.opencontainers.image.authors="mshah.omar@gmail.com"
 
@@ -7,11 +7,8 @@ RUN dnf install -y java-17-amazon-corretto-devel \
                     glibc-locale-source glibc-langpack-en gzip \
                     shadow-utils.x86_64 unzip dejavu-fonts-all.noarch
 
-#RUN dnf install -y java-11-amazon-corretto-headless \
-
 WORKDIR /usr/share/i18n/charmaps
 RUN gzip -dk UTF-8.gz
-#RUN dnf install -y policycoreutils-python-utils openssh-server openssh-clients perl perl-lib
 
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 RUN echo "LANG=en_US.utf-8" >> /etc/environment ; \
@@ -28,7 +25,7 @@ ENV LANG='en_US.UTF-8' \
 #
 ARG SONARQUBE_VERSION=10.2.1.78527
 ARG SONARQUBE_ZIP_URL=https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-${SONARQUBE_VERSION}.zip
-#ENV JAVA_HOME='/usr/lib/jvm/java-11-amazon-corretto.x86_64/bin' \
+
 ENV DOCKER_RUNNING="true" \
     JAVA_HOME='/usr/lib/jvm/java-17-amazon-corretto.x86_64' \
     SONARQUBE_HOME=/opt/sonarqube \
