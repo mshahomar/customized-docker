@@ -16,7 +16,8 @@ services:
     volumes:
       - './conf/sonar.properties:/opt/sonarqube/conf/sonar.properties'
       - './logs:/opt/sonarqube/logs'
-      #- ./data:/opt/sonarqube/data
+      - ./sonarqube_data:/opt/sonarqube/data
+      - ./sonarqube_extensions:/opt/sonarqube/extensions
       #- ./temp:/opt/sonarqube/temp
     #shm_size: '256m'
     networks:
