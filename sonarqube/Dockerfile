@@ -39,6 +39,7 @@ ENV DOCKER_RUNNING="true" \
 RUN dnf swap gnupg2-minimal gnupg2-full -y 
 
 # To fix CVE
+RUN dnf upgrade -y --releasever=latest && dnf -y update
 # CVE-2023-37920, CVE-2023-38545, CVE-2023-38546, CVE-2023-27533, CVE-2023-27534, CVE-2023-27535, CVE-2023-27536,
 # CVE-2023-27537, CVE-2023-27538, CVE-2023-28319, CVE-2023-28321, CVE-2023-28322, CVE-2023-34969, CVE-2022-48554,
 # CVE-2022-27405, CVE-2022-27406, CVE-2023-4156, CVE-2023-24593, CVE-2023-25180, CVE-2023-29499, CVE-2023-32611, 
@@ -48,34 +49,34 @@ RUN dnf swap gnupg2-minimal gnupg2-full -y
 # CVE-2023-25193, CVE-2023-22025, CVE-2023-22081, CVE-2022-40897, CVE-2022-41409, CVE-2023-2975, CVE-2023-3446, 
 # CVE-2023-3817, CVE-2023-2650, CVE-2023-0464, CVE-2023-0465, CVE-2023-0466, CVE-2023-1255, CVE-2023-2953, CVE-2021-27212,
 # CVE-2023-29491, CVE-2023-39615, CVE-2023-28484, CVE-2023-29469, CVE-2023-4039
-RUN dnf update -y ca-certificates --releasever 2023.1.20230823 ; \ 
-    dnf update -y curl --releasever 2023.2.20231011 ; \ 
-    dnf update -y curl --releasever 2023.0.20230607 ; \
-    dnf update -y curl --releasever 2023.1.20230725 ; \
-    dnf update -y dbus --releasever 2023.1.20230628 ; \
-    dnf update -y file --releasever 2023.1.20230906 ; \
-    dnf update -y freetype --releasever 2023.0.20230607 ; \
-    dnf update -y gawk --releasever 2023.1.20230823 ; \
-    dnf update -y glib2 --releasever 2023.1.20230628 ; \ 
-    dnf update -y glibc --releasever 2023.2.20231002 ; \
-    dnf update -y gnutls --releasever 2023.0.20230503; \
-    dnf update -y java-17-amazon-corretto --releasever 2023.0.20230503 ; \
-    dnf update -y harfbuzz --releasever=2023.0.20230222 ; \
-    dnf update -y java-17-amazon-corretto --releasever 2023.2.20231018 ; \
-    dnf update -y python-setuptools --releasever 2023.1.202307192023.1.20230906 ; \
-    dnf update -y python3.9 --releasever 2023.1.20230906 ; \
-    dnf update -y pcre2 --releasever 2023.1.20230809 ; \
-    dnf update -y openssl --releasever 2023.0.20230517 ; \
-    dnf update -y openssl --releasever 2023.1.20230628 ; \
-    dnf update -y openssl --releasever 2023.1.20230823 ; \
-    dnf update -y openldap --releasever 2023.0.20230503 ; \
-    dnf update -y openldap --releasever 2023.1.20230628 ; \
-    dnf update -y ncurses --releasever 2023.1.20230628 ; \
-    dnf update -y zstd --releasever 2023.1.20230719 ; \
-    dnf update -y libxml2 --releasever 2023.0.20230503 ; \
-    dnf update -y libxml2 --releasever 2023.2.20230920 ; \
-    dnf update -y gcc --releasever 2023.1.20230912 ; \
-    dnf update -y dotnet6.0 --releasever 2023.2.20231016
+# RUN dnf update -y ca-certificates --releasever 2023.1.20230823 ; \ 
+#     dnf update -y curl --releasever 2023.2.20231011 ; \ 
+#     dnf update -y curl --releasever 2023.0.20230607 ; \
+#     dnf update -y curl --releasever 2023.1.20230725 ; \
+#     dnf update -y dbus --releasever 2023.1.20230628 ; \
+#     dnf update -y file --releasever 2023.1.20230906 ; \
+#     dnf update -y freetype --releasever 2023.0.20230607 ; \
+#     dnf update -y gawk --releasever 2023.1.20230823 ; \
+#     dnf update -y glib2 --releasever 2023.1.20230628 ; \ 
+#     dnf update -y glibc --releasever 2023.2.20231002 ; \
+#     dnf update -y gnutls --releasever 2023.0.20230503; \
+#     dnf update -y java-17-amazon-corretto --releasever 2023.0.20230503 ; \
+#     dnf update -y harfbuzz --releasever=2023.0.20230222 ; \
+#     dnf update -y java-17-amazon-corretto --releasever 2023.2.20231018 ; \
+#     dnf update -y python-setuptools --releasever 2023.1.202307192023.1.20230906 ; \
+#     dnf update -y python3.9 --releasever 2023.1.20230906 ; \
+#     dnf update -y pcre2 --releasever 2023.1.20230809 ; \
+#     dnf update -y openssl --releasever 2023.0.20230517 ; \
+#     dnf update -y openssl --releasever 2023.1.20230628 ; \
+#     dnf update -y openssl --releasever 2023.1.20230823 ; \
+#     dnf update -y openldap --releasever 2023.0.20230503 ; \
+#     dnf update -y openldap --releasever 2023.1.20230628 ; \
+#     dnf update -y ncurses --releasever 2023.1.20230628 ; \
+#     dnf update -y zstd --releasever 2023.1.20230719 ; \
+#     dnf update -y libxml2 --releasever 2023.0.20230503 ; \
+#     dnf update -y libxml2 --releasever 2023.2.20230920 ; \
+#     dnf update -y gcc --releasever 2023.1.20230912 ; \
+#     dnf update -y dotnet6.0 --releasever 2023.2.20231016
 
 # Resume Sonarqube setup
 RUN set -eux; \
